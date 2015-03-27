@@ -1,0 +1,263 @@
+﻿body{
+	background-color:#E8E8E8;
+	font-size: 16px;
+	font-family: Arial, 'Lucida Sans Unicode';
+	line-height: 1.5;
+	text-align: left;
+	
+}
+
+.mainHeader img{
+	float: left;
+	padding: 0;
+}
+.body{
+	margin: 0 15% 0 15%;
+	width: 72% ;
+	clear: both;
+	background-color:white;
+	
+}
+.body div{
+	background-color:white;
+}
+
+.mainHeader div p{
+	text-align: right;
+	color: #D80000;
+	font-weight: bold;
+	padding-top: 3%;
+	padding-right: 18.5%;
+	font-size: 16px;
+	margin: 0px;
+}
+.post-info{
+	font-size: 14px;
+	color: #666;
+	font-style: italic;
+}
+.mainHeader div {
+	background-color:#E8E8E8 ;
+
+	
+}
+
+
+.mainHeader nav{
+	height: 35px;
+	background-color: #0066FF;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 0;
+}
+
+.mainHeader nav ul {
+	list-style: none;
+	margin: 0;
+	position: relative;
+	display: inline;
+	background-color: #0066FF;
+	
+}
+
+.mainHeader nav ul li{
+	float: left;
+	display: inline-block;
+	font-style: bold;
+	cursor: pointer;
+}
+.mainHeader nav .active{
+	margin-left:40px;
+}
+
+.mainHeader ul  li ul{
+	display: none;
+	position: absolute;
+	background-color: #666;
+	margin: 0;
+}
+
+.mainHeader nav ul li ul li{
+	display: block;
+	background-color:#666;
+	cursor: pointer;
+}
+
+.mainHeader nav ul li:hover {
+	background-color: #666;
+	padding: 0;
+}
+.mainHeader nav ul li:hover  ul{
+	display: block;
+	background-color: #666;
+	padding: 0;
+}
+.mainHeader nav ul li a:link , .mainHeader nav ul li a:visited{
+	color:#FFF;
+	display: inline-block;
+	padding: 10px 25px;
+	height: 25px;
+	text-decoration: none;
+}
+
+.mainHeader nav a:hover, .mainHeader nav a:active, .mainHeader nav .active a:link, .mainHeader nav .active a:visited{
+	background-color: #666;
+	text-shadow: none;
+	
+}
+.mainHeader nav ul li a{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+
+.mainContent{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	line-height: 25px;
+	background-color:#E8E8E8;
+	
+	
+}
+
+.content{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 800px;
+	float: left;
+	
+}
+.maincontent .content .topcontent .form table{
+	width: 60%;
+	height: 100%;
+	border: 2%;	
+}
+
+.maincontent .content .topcontent .form table td tr{
+	height: 100%;
+	border: 2%;	
+}
+
+.topcontent{
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	padding: 20px 35px;
+	margin-top: 32px;
+}
+.topcontent header{
+	color: #0066FF;
+	font-family: Arial;
+}
+
+.bottomcontent{
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	padding: 20px 35px;
+	margin-top: 32px;
+}
+.bottomcontent header{
+	color: #0066FF;
+	font-family: Arial;
+}
+
+.top-sidebar{
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	margin-top: 32px;
+	margin-left: 25px;
+	width: 250px;
+	float: left;
+	
+}
+.top-sidebar ul li {
+	font-style: bold;
+	color: #666;
+	
+}
+.top-sidebar ul li a{
+	font-style: bold;
+	color: #0066FF;
+	
+}
+.top-sidebar p{
+	font-weight: bold;
+	color: #0066FF;
+	margin: 10px 10PX;
+}
+.middle-sidebar{
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	margin-top: 32px;
+	margin-left: 25px;
+	width: 250px;
+	float: left;
+}
+.middle-sidebar p{
+	font-weight: bold;
+	color: #0066FF;
+	margin: 10px 10PX;
+}
+.middle-sidebar ul li{
+	list-style-type: none;
+}
+
+.middle-sidebar article button{
+	float:right;
+	margin-right: 32px;
+	margin-bottom: 20px;
+	color: white;
+	font-family: Arial;
+	background: #0066FF;
+	height: 30px;
+	width: 100px;
+	border-radius: 5px;
+}
+.middle-sidebar article button:hover{
+	background: #666;
+	color: white;
+	
+}
+
+.mainfooter{
+	width: 1100px;
+	float: left;
+	border-style: solid;
+	border-color: silver;
+	border-width: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #666;
+	margin: 32px 0 0 0 ;
+	position: relative;
+	
+}
+.mainfooter p{
+	color: #0066FF;
+	text-align: center;
+	
+}

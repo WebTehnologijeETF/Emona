@@ -77,8 +77,9 @@
 									  <option value="vjestacenje">vještačenje</option>
 									  <option value="procjena">procjena</option>
 									  <option value="osiguranje">naplata štete</option>
-									  <option value="Ostalo">drugo</option>
+									 <option value="Ostalo">drugo</option>
 									</select>
+								<span id = "uslugaSpan" class = "error">Morate odabrati uslugu</span>
 								</td>
 							</tr>
 							
@@ -90,7 +91,7 @@
 						
 							<tr>
 								<td><label>Detaljnije informacije:</label></td>
-								<td><textarea id = "textbox" rows = "8" cols = "50" placeholder = "Detaljne informacije.."> </textarea></td>
+								<td><textarea onfocus = validateTextArea() id = "textbox" rows = "8" cols = "50" placeholder = "Detaljne informacije.."> </textarea></td>
 							</tr>
 						</table>
 						

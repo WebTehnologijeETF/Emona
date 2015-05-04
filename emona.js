@@ -1,4 +1,23 @@
-﻿function kliknuto(godina, link) {
+﻿var brojac = 1;
+var ukupno = 6;
+/*function functionCover(x){
+	var Image = document.getElementById('cover');
+	brojac = brojac + x;
+	if(brojac > ukupno) brojac = 1;
+	if(brojac < 1) brojac = ukupno;
+	Image.src = "cover" + brojac + ".jpg";
+	
+}
+window.setInterval(function functionCoverA(){
+	var Image = document.getElementById('cover');
+	brojac = brojac + 1;
+	if(brojac > ukupno) brojac = 1;
+	if(brojac < 1) brojac = ukupno;
+	Image.src = "cover" + brojac + ".jpg";
+	
+},3000);*/
+
+function kliknuto(godina, link) {
 	var id = "emona"+godina
 	if (document.getElementById(id).style.display === 'none') {
 		document.getElementById(id).style.display = 'block'
@@ -71,7 +90,7 @@ function validateService(){
 		return true;
 		
 	}
-	else if(contact.usluga.selectedIndex == 3){
+	else if(contact.usluga.selectedIndex == 3  ){
 		naslov.value = "Upit o naplati štete";
 		naslov.disabled = false;
 		textbox.disabled = false;
@@ -79,19 +98,27 @@ function validateService(){
 		
 	}
 	else if(contact.usluga.selectedIndex == 4){
-		naslov.value = "";
+		naslov.value = "Upit o";
 		naslov.disabled = false;
 		textbox.disabled = false;
 		return true;
 		
 	}
+	else if(contact.usluga.selectedIndex == 0){
+		naslov.value = "Odaberite uslugu";
+		naslov.disabled = true;
+		textbox.disabled = true;
+		posalji.disabled = true;
+		return false;
 		
+	}
 	else {
 		naslov.value = "Odaberite uslugu";
 		naslov.disabled = true;
 		textbox.disabled = true;	
 		return false;
 	}
+	return false;
 }
 
 function validateTitle(){
@@ -101,40 +128,63 @@ function validateTitle(){
 		naslov.disabled = true;	
 		textbox.disabled = true;
 		return false;
+	}
+    else{
+        return true;
+    }
+
+}
+function validateTextArea(){
+	var naslov = document.getElementById("title");
+	if(naslov.value == "" && contact.usluga.selected == null){
+		naslov.value = "Odaberite uslugu"
+		naslov.disabled = true;	
+		textbox.disabled = true;
+		return false;
 		
 	}
-	else if(contact.usluga.selected == 1){
-		naslov.disabled = false;	
-		textbox.disabled = false;
-		return true;
-	}
-	else if(contact.usluga.selected == 2){
-		naslov.disabled = false;	
-		textbox.disabled = false;
-		return true;
-	}
-	else if(contact.usluga.selected == 3){
-		naslov.disabled = false;	
-		textbox.disabled = false;
-		return true;
-	}
-	else if(contact.usluga.selected == 4){
-		naslov.disabled = false;	
-		textbox.disabled = false;
-		return true;
-	}
-	else {
-		return true;
-	}
+    else{
+        return true;
+    }
 }
+function provjeriMjestoOpcina() {
+                var ajax = new XMLHttpRequest();
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        var odgovor = JSON.parse(ajax.responseText);
+                        if (odgovor.hasOwnProperty('greska')) {
+                            alert(odgovor.greska);
+                        }
+                    }
+                    if (ajax.readyState == 4 && ajax.status == 404)
+                          document.innerHTML = stranica.toString();
+                }
+                var Imegrada = document.getElementById("grad").value;
+                var Imeopcine = document.getElementById("opcina").value;
+                if (Imegrada.length === 0) { 
+                     alert("Polje za unos mjesta je prazno!");
+                     return false;
+                }
+                if (Imeopcine.length === 0) { 
+                     alert("Polje za unos opcine je prazno!");
+                     return false;
+                }
+                ajax.open("GET", "http://zamger.etf.unsa.ba/wt/mjesto_opcina.php?opcina=" + Imeopcine+"&mjesto=" + Imegrada, true);
+                ajax.send();
+                return false;
+                
 
+            }
 function validateForm(){
-	if(!(validateName() && validateEmail() && validateTitle() && validateService)){
+      provjeriMjestoOpcina();
+	if(!(validateName() && validateEmail() && validateTitle() && validateService())){
+   
 		alert("Niste ispravno unijeli tražene podatke");
-	}
+	}   
 	else{
 		alert("Upit je uspješno poslan")
 	}
+   
 }
 
 

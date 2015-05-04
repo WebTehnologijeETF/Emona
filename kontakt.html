@@ -1,46 +1,11 @@
-﻿<!doctype html>
-<html>
-	<head>
-		
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	    <link rel="stylesheet" type="text/css" href="emona1.css"> 
-		<script src="emona.js"></script>
-		<title>Agencija "Emona"</title>
-	</head>
-	<body class = "body">
-		<div class = "logo">
-				<a href="Emona1.html"><img src="emona.jpg" alt = "Logo"></a>	
-				<p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
-			
-		</div>
-		<div class = "background">
-			<header class = "mainHeader">
-				<nav>
-					<ul>
-						<li><a class = "active" href = "Emona1.html">Naslovnica</a></li>
-						<li><a href = "#" onclick = "return kliknuto (2,this)">Usluge</a>
-							<ul style="display:none" id="emona2">
-								<li><a href = "usluge.html">Općenito</a></li>
-								<li><a href = "vjestacenje.html">Vještačenje</a></li>
-								<li><a href = "procjena.html">Procjena štete</a></li>
-								<li><a href = "naplata.html">Naplata štete</a></li>
-							</ul>
-						</li>
-						<li><a href = "onama.html">O nama</a>
-						</li>
-						
-						<li><a href = "rjecnik.html">Rječnik pojmova</a></li>
-						<li><a href = "kontakt.html">Kontakt</a></li>
-					</ul>
-					
-				</nav>
-			</header>
-			
+﻿
+		<div class = "background">	
 			<div class = "maincontent">
 				<div class = "content">
 					<article class = "topcontentKontakt">
 						<header>
-						<h2>Kontaktirajte nas<p>Polja označena sa "*" su obavezna</p></h2>
+						<h1>Kontaktirajte nas</h1>
+                        <p>Polja označena sa "*" su obavezna</p>
 						
 					</header>
 					
@@ -66,14 +31,16 @@
 						
 							<tr>
 								<td><label>Grad:</label></td>
-								<td><input type = "text" name = "grad" placeholder = "Naziv grada.."> </td>
+								<td><input type = "text" id = "grad" placeholder = "Naziv grada.."> </td>
 							</tr>
-							
-
+							<tr>
+								<td><label>Opcina:</label></td>
+								<td><input type = "text" id = "opcina" placeholder = "Naziv opcine.."> </td>
+							</tr>
 							<tr>
 								<td><label>Usluga *: </label></td>
 								<td><select onclick = validateService() id = "usluga">
-									  <option selected="usluga">Izaberi uslugu</option>
+									  <option value="usluga">Izaberi uslugu</option>
 									  <option value="vjestacenje">vještačenje</option>
 									  <option value="procjena">procjena</option>
 									  <option value="osiguranje">naplata štete</option>
@@ -96,7 +63,7 @@
 						</table>
 						
 						<div>
-							<input type = "submit" value = "Pošalji upit" onclick="validateForm()">
+							<input type = "submit" id ="posalji" value = "Pošalji upit" onclick="validateForm()">
 						</div>
 						 
 					 </form>
@@ -174,9 +141,7 @@
 				</article>
 			</aside>
 			
-			<footer class = "mainfooter">
+		<footer class = "mainfooter">
 			<p>Copyright &copy; Dzenana Bricic 2015</p>
-		</footer>
+		 </footer>
 		</div>	
-	</body>
-</html>

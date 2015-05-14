@@ -26,9 +26,8 @@ function napraviTabelu(tabela) {
 
 }
 function akcija(tip) {
-    usluge();
     var usluga = {
-        id: parseInt(document.getElementById('id1').value),
+        id: document.getElementById('id1').value,
         naziv: document.getElementById('naziv').value,
         opis: document.getElementById('opis').value,
         cijena: parseFloat(document.getElementById('cijena').value)
@@ -40,9 +39,6 @@ function akcija(tip) {
     ajax.onreadystatechange = function () {
         if (ajax.readyState == 4 && ajax.status == 200) {
             usluge();
-            if (tip == 'dodavanje') alert("Proizvod je dodan!");
-            if (tip == 'brisanje') alert("Proizvod je obrisan!");
-            if (tip == 'promjena') alert("Proizvod je promjenjen!");
         }
 
         if (ajax.readyState == 4 && ajax.status == 404 || ajax.readyState == 4 && ajax.status == 400)
@@ -92,10 +88,7 @@ function akcija(tip) {
                     ajax.open("GET", "kontakt.html", true);
                     ajax.send();
                 }
-                if(naziv === "index"){
-                    ajax.open("GET", "index.html", true);
-                    ajax.send();
-                }
+               
             }
 
 

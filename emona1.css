@@ -221,6 +221,7 @@
 	background-color: white;
 	padding: 2% 2%;
 	margin-top: 1.5%;
+    margin-left: 0.5%;
 	border-bottom-color: #1A9FB2;
 	border-bottom-width: 4px;
 	border-bottom-style: solid;
@@ -376,7 +377,6 @@ label{
 .post-info {
 	font-size: 14px;
 	color: #1A9FB2;
-	margin-left: 2%;
 	font-style: italic;
 
 }

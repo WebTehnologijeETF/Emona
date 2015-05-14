@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 	<head>
 		
@@ -14,7 +14,7 @@
 
 	
 		<div class = "logo">
-					<a href="Emona1.html"><img src="emona.jpg" alt = "Logo"></a>	
+					<a href="index.php"><img src="emona.jpg" alt = "Logo"></a>	
 					<p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
 		</div>
 		
@@ -47,52 +47,17 @@
 				<div class = "left_holder"><img alt ="lijevo" onClick = "functionCover(-1)"  src="lijevo.png"></img></div>
 				<div class = "right_holder"><img alt ="desno" onClick = "functionCover(1)" src="desno.png"></img></div>
 			</div>
-			<div class = "content">
-					<article class = "topcontent">
-						<header>
-							<h2>Sigurnost</h2>
-						</header>
-						
-							<img src = "osiguranje.jpg" alt = "Osiguranje" width="180" height="90">
-							<p>Tko uz sebe ima pouzdanog poslovnog partnera, 
-							može mirno kročiti kroz život, jer uživa sigurnost i 
-							zaštitu, osobito onda kada su mu najpotrebnije. 
-							Agencija "Emona" nudi Vam upravo takvo partnerstvo. </p>
-							<br>
-							
-						
-						<footer>
-							<p class = "post-info">
-							<time datetime="2014-09-28"> 2014-09-28</time>
-							,DzBricic
-							<button type = "submit">Detalji</button>
-							</p>
-							
-						</footer>
-					</article>
-					
-					<article class = "bottomcontent">
-						<header>
-							<h2>Novosti</h2>
-						</header>
-						
-							<img src = "osiguranje.jpg" alt = "osiguranje" width="180" height="90">
-							<p>Stručna i kvalitetna analiza saobraćajne nesreće omogućava otkrivanje i dokazivanje prevara u osiguranju. U 
-							cilju naplate nepostojeće štete ili štete koju nije moguće naplatiti u legalnom postupku, prijavljuju se štetni događaji koji se stvarno
-							nisu dogodili..
-							</p>
-							<br>
-						
-						<footer>
-							<p class = "post-info">
-							<time datetime="2014-09-28"> 2014-09-28</time>
-							DzBricic
-							
-							<button class = "detalji">Detalji</button>
-							</p>
-						</footer>
-					</article>
-				 </div>
+			<div class = "topcontent">
+			         <?php
+                    $naziv = $_GET['naslov'];
+                    echo '<h2>' .$naziv. '</h2>';
+                    ?>
+            
+                    <p ><?php echo $_GET['detaljno'] ?></p>
+                    <br>
+                <p  class="post-info"><?php echo 'Autor teksta: ', $_GET['autor'] ?></p>
+                <p class="post-info"><?php echo 'Datum objave: ', $_GET['datum'] ?></p>
+			</div>
 			</div>
 			
 			<aside class = "bottom-sidebar">

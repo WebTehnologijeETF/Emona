@@ -50,7 +50,7 @@
 		                                if (isset($_REQUEST['ime']))
                                         print $_REQUEST['ime'];
                                         ?>" id="ime" name="ime" onblur="provjeri(this)"></td>
-                                <td><img id="greskaIme" src="x.png" alt="X" title="Morate unijeti ime i prezime!"></td>
+                                
 								
 							</tr>
 							
@@ -60,8 +60,7 @@
 		                                if (isset($_REQUEST['mail']))
                                         print $_REQUEST['mail'];
                                         ?>" class="podaci" id="mail" name="mail" onblur="provjeri(this)"></td>
-                                 <td><img id="greskaMail" src="Slike/x.png" alt="X" title="Morate unijeti svoju E-Mail adresu!"></td>
-								
+                                 
 								</td>
 							</tr>
 						
@@ -72,16 +71,14 @@
 		                                if (isset($_REQUEST['mjesto']))
                                         print $_REQUEST['mjesto'];
                                         ?>" class="podaci" id="mjesto" name="mjesto"></td>
-                                <td><img id="greskaMjesto" src="Slike/x.png" alt="X" title="Mjesto nije korektno!"></td>
-							</tr>
+                                </tr>
 							<tr>
 								<td><label>Opcina:</label></td>
 								<td><input value="<?php
 		                                if (isset($_REQUEST['opcina']))
                                         print $_REQUEST['opcina'];
                                         ?>" class="podaci" id="opcina" name="opcina"></td>
-                                <td><img id="greskaOpcina" src="Slike/x.png" alt="X" title="Opcina nije korektna!"></td>
-							</tr>
+                              </tr>
 							<tr>
 								<td><label>Usluga *: </label></td>
 								<td><select onclick = validateService() id = "usluga">

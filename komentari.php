@@ -34,6 +34,23 @@
 						<li><a href = "#" onclick ="ucitaj('onama')">O nama</a></li>
 						<li><a href = "#" onclick ="ucitaj('rjecnik')">Rječnik pojmova</a></li>
 						<li><a href = "#" onclick ="ucitaj('kontakt')">Kontakt</a></li>
+                          <li><a href = "#">Prijavi se</a>
+							<ul id="emona1">
+                                <?php
+                                echo "<li><form class = 'login' method = 'post' action = 'index.php'></li>";
+								print "<li><input type='tekst' class ='korisnickoIme' name ='korisnickoIme' placeholder='Korisničko ime'></input></li>";
+                                print "<li><input type='tekst' class ='sifra' name ='sifra' placeholder='Šifra'</input></li>";
+                    
+                                print "<li><input type='submit' class ='prijava' name ='prijava' value ='Prijavi se'></input></li>";
+                    
+                                print "<li><input type='submit' class ='odjava' name ='odjava' value ='Odjavi se'></input></li>";
+                                print "<li><input type='submit' class ='promjenaSifra' name ='promjenaSifra' value ='Zaboravili ste sifru'></input></li>";
+                                print "<li></form></li>";
+                                
+                                ?>
+
+							</ul>
+						</li>
 					</ul>
 					
 				</nav>

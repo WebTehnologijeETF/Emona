@@ -1,13 +1,20 @@
 ﻿body{
-	background-color: silver;
+	background-color: #3a3d42;
 	margin: 0;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: Arial, 'Lucida Sans Unicode';
 	line-height: 1.5;
 	text-align: left;
 	color: #5d5d5d;
 }
 /*logo*/
+.login {
+    right: 0;
+    margin-right: 290px;
+    margin-top: 0px;
+    width: 20px;
+    position: absolute;
+}
 .logo {
 	background-color: #E8E8E8;
 	border-bottom-color: #1A9FB2;
@@ -28,7 +35,7 @@
 	margin-bottom: 0;
 }
 .logo p{
-	padding-top:1%;
+	padding-top:3%;
 	margin: 0%;
 	color: #ED1C24;
 	font-weight: bold;
@@ -120,7 +127,7 @@
 	height: 50px;
 	width: 60%;
 	position: absolute;
-	right: 0%;
+	right: 8%;
 	top: 45%;
 	box-shadow: 0px 0px 0px 0px #666;
 	
@@ -137,8 +144,6 @@
 	border-bottom-color: #666;
 	border-bottom-style: double;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	padding: 0;
     
 	
@@ -163,13 +168,13 @@
 	cursor: pointer;
 }
 .mainHeader nav .active{
-	margin-left:40px;
+	margin-left:0px;
 }
 
 .mainHeader ul  li ul{
 	display: none;
 	position: absolute;
-	background-color: #0066FF;
+	
 	margin: 0;
     z-index: 10;
 	
@@ -182,17 +187,22 @@
 }
 
 .mainHeader nav ul li:hover {
-	background-color: #40C3EF;
+	background-color: #1A9FB2;
 	padding: 0;
 }
 
 .mainHeader nav ul li ul li:hover {
-	background-color: #40C3EF;
+	background-color: #1A9FB2;
 	padding: 0;
 }
 .mainHeader nav ul li:hover  ul{
 	display: block;
-	background-color: #40C3EF;
+	background-color: #666;
+	padding: 0;
+}
+.emona1 ul li:hover  ul{
+	display: block;
+	background-color: #666;
 	padding: 0;
 }
 .mainHeader nav ul li a:link , .mainHeader nav ul li a:visited{
@@ -204,7 +214,7 @@
 }
 
 .mainHeader nav a:hover, .mainHeader nav a:active, .mainHeader nav .active a:link, .mainHeader nav .active a:visited{
-	background-color: #40C3EF;
+	background-color: #1A9FB2;
 	text-shadow: none;
 	
 }
@@ -215,8 +225,6 @@
 	font-size: 14px;
 	width:70%;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	line-height: 25px;
 	margin-right: 2%;
 	float: left;
@@ -267,8 +275,6 @@
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	padding: 2% 2%;
 	margin-top: 1.5%;
@@ -285,8 +291,6 @@
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	padding: 2% 2%;
 	float: left;
@@ -312,11 +316,9 @@
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	padding: 2% 2%;
-	width: 95%;
+	width: 130%;
 	margin-top: 1.5%;
 
 
@@ -335,7 +337,7 @@
 }
 
  .topcontentKontakt .form input, textarea, select{
-	width: 40%;
+	width: 90%;
 	padding: 10px;
 	margin-top: 2%;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
@@ -380,8 +382,6 @@ label{
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	padding: 2% 2%;
 	margin-top: 2%;
@@ -441,8 +441,6 @@ label{
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	margin-top: 1%;
 	margin-left: 71.5%;
@@ -476,8 +474,6 @@ label{
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	margin-top: 1%;
 	margin-left: 71.5%;
@@ -519,8 +515,6 @@ label{
 	border-color: silver;
 	border-width: 3px;
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background-color: white;
 	margin-top: 1%;
 	margin-left: 71.5%;
@@ -543,63 +537,63 @@ label{
 	margin-bottom: 3%;
 }
 
-.bottom-sidebar .korisnickoIme{
+ .korisnickoIme{
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 16px;
+     margin-right: 16px;
     width: 150px;
 }
-.bottom-sidebar .sifra{
+.sifra{
     margin-top: 2px;
-    margin-left: 10px;
+    margin-left: 16px;
+       margin-right: 16px;
     width: 150px;
 }
-.bottom-sidebar .prijava{
-    position: absolute;
-    right: 15px;
-    margin-top: -22px;
-    width: 80px;
+.prijava{
+    
+    width: 100px;
     color: #1A9FB2;
 	font-family: Arial;
 	background: #666;
+    margin-left: 90px;
 }
-.bottom-sidebar .odjava{
-    position: absolute;
-    right: 15px;
-    margin-top: 0px;
-    width: 80px;
+.odjava{
+    height: 49px;
+    width: 120px;
     color: #1A9FB2;
 	font-family: Arial;
 	background: #666;
+    font-size: 18px;
+    font-weight: bold;
+   
 }
-.middle-sidebar prijava:hover{
-	background: #1A9FB2;
-	color: white;
-	
-}
-.bottom-sidebar .promjenaSifra{
-    background-color: #E8E8E8;
-    position: relative;
-    right: -10px;
-     width: 120px;
-     height: 17px;
-     font-size: 10px;
+.promjenaSifra{
+    
+    width: 120px;
+    color: #1A9FB2;
+	font-family: Arial;
+	background: #666;
+    margin-left: 70px;
 }
 
-
-mainfooter{
+.nepostojeciKorisnik{
+    font-size: 12px;
+    color: white;
+}
+#mainfooter{
 	width:100%;
 	float: left;
 	border-style: solid;
 	border-color: #666;
 	border-width: 1px;
 	background-color: #666;
-
+    float: left;
 	position: relative;
 	height: 20%;
 	
 }
-mainfooter p{
-	color: #40C3EF;
+#mainfooter p{
+	color: white;
 	text-align: center;
 	
 }
@@ -630,15 +624,11 @@ mainfooter p{
 .formVijesti{
     
 	background-color: white;
-	padding: 2% 2%;
 	width: 500px;
-	margin-top: 1.5%;
-   
-	
 	background-color: white;
 	padding: 2% 2%;
 	
-    margin-left: 10%;
+    margin-left: 1%;
 	
 
 }
@@ -654,11 +644,11 @@ mainfooter p{
     
 }
 .tabela td{
-      display: table-cell;
+   display: table-cell;
   vertical-align: inherit;
 }
-.labela{
-   font-size: 16px;
+.lable labela{
+   font-size: 14px;
   text-align: right;
   width: 150px;
   font-weight: bold;
@@ -687,6 +677,7 @@ mainfooter p{
 	margin-left:310px;	
 	color: #1A9FB2;
 	font-weight:bold;
+    width: 120px;
 		
 }
 #porukaKomentar {
@@ -758,4 +749,8 @@ mainfooter p{
 	font-size: 14px;
 	color: #1A9FB2;
 
+}
+.logoetf{
+    width: -5px;
+    height: -5px;
 }

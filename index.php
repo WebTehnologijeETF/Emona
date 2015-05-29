@@ -3,7 +3,6 @@
                          
                          $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
                          $veza->exec("set names utf8");
-                       
                          $korisnickoIme = $_POST['korisnickoIme'];
                          $sifra = $_POST['sifra'];
                          $sifra = md5($sifra);
@@ -21,7 +20,7 @@
                             $provjera = $value;
                             break;
                         }
-                        if($provjera == NULL) echo "Nepostojeći korisnik!";
+                        if($provjera == NULL) $_SESSION['nepostojeciKorisnik'] = "Nepostojeći korisnik!";
                         else{     
                                  
                             session_start();     
@@ -56,7 +55,7 @@ if(isset($_POST['promjenaSifra'])) {
                             $provjera = $value;
                             break;
                         }
-                        if($provjera == NULL) echo "Nepostojeći korisnik!";
+                        if($provjera == NULL) $_SESSION['promjenaSifre'] = "Nepostojeći korisnik!";
                         else{     
                                 
                               $sifra = rand();
@@ -118,8 +117,10 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
 	
 		<div class = "logo">
 					<a href="index.php"><img src="emona.jpg" alt = "Logo"></a>	
-                    <p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
-                    
+         
+			       <p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
+             
+          
                  
 		</div>
 		
@@ -139,6 +140,32 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
 						<li><a href = "#" onclick ="ucitaj('onama')">O nama</a></li>
 						<li><a href = "#" onclick ="ucitaj('rjecnik')">Rječnik pojmova</a></li>
 						<li><a href = "#" onclick ="ucitaj('kontakt')">Kontakt</a></li>
+                         <?php
+                           
+                             if(!isset($_SESSION['korisnickoIme'])){
+                                print "<li><a href = '#'>Prijavi se</a>";
+							    print "<ul id='emona1'>";
+                                
+                                echo "<li><form class = 'login' method = 'post' action = 'index.php'></li>";
+								print "<li><input type='tekst' class ='korisnickoIme' name ='korisnickoIme' placeholder='Korisničko ime'></input></li>";
+                                print "<li><input type='tekst' class ='sifra' name ='sifra' placeholder='Šifra'</input></li>";
+                                print "<li><input type='submit' class ='prijava' name ='prijava' value ='Prijavi se'></input></li>";
+                                print "<li><input type='submit' class ='promjenaSifra' name ='promjenaSifra' value ='Zaboravili ste sifru'></input></li>";
+             
+							print"</ul>";
+						print"</li>";
+                                  }
+                       
+                             else{
+                                  echo "<li><form class = 'login' method = 'post' action = 'index.php'></li>";
+                                  print"<li><input type='submit' class ='odjava' name ='odjava' value ='Odjavi se'></input></li>";
+                            print "<li></form></li>";
+                               
+                           }
+                           
+                            
+                      ?>
+                       
 					</ul>
 					
 				</nav>
@@ -148,7 +175,7 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
 			<div class = "background">
 			<div class = "maincontent">
 			<div onload = "functionCoverA()" class = "backgroundpicture">
-				<img alt ="cover" id = "cover" src="cover1.jpg"></img>
+				<img alt ="cover" id = "cover" src="cover3.jpg"></img>
 				<div class = "left_holder"><img alt ="lijevo" onClick = "functionCover(-1)"  src="lijevo.png"></img></div>
 				<div class = "right_holder"><img alt ="desno" onClick = "functionCover(1)" src="desno.png"></img></div>
 			</div>
@@ -252,23 +279,7 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
                     ?>
 			</div>
 			</div>
-			<aside class = "bottom-sidebar">
-                 <?php
-                    
-                    print "<form method = 'post' action = 'index.php'>";
-                    print "<input type='tekst' class ='korisnickoIme' name ='korisnickoIme' placeholder='Korisničko ime'></input>";
-                    print "<input type='tekst' class ='sifra' name ='sifra' placeholder='Šifra'</input>";
-                    
-                    print "<input type='submit' class ='prijava' name ='prijava' value ='Prijavi se'></input>";
-                    
-                    print "<input type='submit' class ='odjava' name ='odjava' value ='Odjavi se'></input>";
-                    print "<input type='submit' class ='promjenaSifra' name ='promjenaSifra' value ='Zaboravili ste sifru'></input>";
-                    print "</form>";
-                   
-                  
-                         $veza = NULL;
-                    ?>
-			</aside>
+			
 			<aside class = "bottom-sidebar">
 				<article>
 					<p>Kontakt informacije</p>
@@ -311,7 +322,7 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
 				<article>
 					<p>Nasi partneri:</p>
 					<ul>
-							<li><a href="http://c2.etf.unsa.ba/course/view.php?id=119">ETF</a></li>
+							<li><a class ="logoetf" href="http://c2.etf.unsa.ba/course/view.php?id=119">ETF</a></li>
 					</ul>
 				</article>
 			</aside>
@@ -326,15 +337,20 @@ if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
 					<button type = "submit">Potvrdi</button>
 				</article>
 			</aside>
+                 <footer id = "mainfooter">
+			<p>Copyright &copy; Dzenana Bricic 2015  </p>
+		</footer>
 			
 			
 			
            
-			<footer id = "mainfooter">
-			<p>Copyright &copy; Dzenana Bricic 2015  </p>
-		</footer>
+		
 		</div>	
+
             </div>
-	</body>
+       
+      </body>
+        
+	
 </html>
 

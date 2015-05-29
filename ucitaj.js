@@ -85,7 +85,7 @@ function akcija(tip) {
                     ajax.send();
                 }
                 if(naziv === "kontakt"){
-                    ajax.open("GET", "kontakt.html", true);
+                    ajax.open("GET", "kontakt.php", true);
                     ajax.send();
                 }
                

@@ -1,74 +1,106 @@
-<?php
+<?php  session_start();
+   if(isset($_REQUEST['prijava'])){
+                         
+                         $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                         $veza->exec("set names utf8");
+                       
+                         $korisnickoIme = $_POST['korisnickoIme'];
+                         $sifra = $_POST['sifra'];
+                         $sifra = md5($sifra);
+                         $komentar = $veza->prepare("select * from korisnik where korisnickoIme= :korisnickoIme and sifra = :sifra");
+                         $komentar -> bindParam(':korisnickoIme', $korisnickoIme);
+                         $komentar -> bindParam(':sifra', $sifra);
+                         $komentar->execute(); 
+                         if (!$komentar) {
+                                $greska = $veza->errorInfo();
+                                print "SQL greškoa: ". $greska[2];
+                                exit();
+                            }
+                        $provjera = NULL;
+                        foreach($komentar as $value) {
+                            $provjera = $value;
+                            break;
+                        }
+                        if($provjera == NULL) echo "Nepostojeći korisnik!";
+                        else{     
+                                 
+                            session_start();     
+                                   
+                            $_SESSION['korisnickoIme'] = $provjera['korisnickoIme'];
+                            $_SESSION['email'] = $provjera['email'];
+                            $_SESSION['id'] = $provjera['id'];
+                           
+                            
+                        }    
+                        }
+if(isset($_POST['odjava'])) {
+                        session_unset();
+                        session_destroy();
+                        session_unregister();
+                    }
+if(isset($_POST['promjenaSifra'])) {
+                        $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                         $veza->exec("set names utf8");
+                       
+                         $korisnickoIme = $_POST['korisnickoIme'];   
+                         $komentar = $veza->prepare("select * from korisnik where korisnickoIme= :korisnickoIme");
+                         $komentar -> bindParam(':korisnickoIme', $korisnickoIme);
+                          $komentar->execute(); 
+                         if (!$komentar) {
+                                $greska = $veza->errorInfo();
+                                print "SQL greška: ". $greska[2];
+                                exit();
+                            }
+                        $provjera = NULL;
+                        foreach($komentar as $value) {
+                            $provjera = $value;
+                            break;
+                        }
+                        if($provjera == NULL) echo "Nepostojeći korisnik!";
+                        else{     
+                                
+                              $sifra = rand();
+                              $mail = $provjera['email'];
+                               $msg = $sifra;
+                               $msg = wordwrap($msg,70);
+                               mail($mail,"Promjena sifre",$msg);      
+                      
+                        }
+                     
+                    }
+if(isset($_POST['dodaj']) && isset($_SESSION['korisnickoIme'])){
+                            
+                            $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                            $veza->exec("set names utf8");
+                            $datum = date("Y-m-d h:i:sa");
+                              $rezultat = $veza->prepare("INSERT INTO vijest (vrijeme, naslov, autor,tekst) values (:vrijeme, :naslov, :autor, :tekst)");
+                          $rezultat -> bindParam(':vrijeme', $datum);
+                          $rezultat -> bindParam(':naslov',$_POST['naslov']);
+                          $rezultat -> bindParam(':autor', $_POST['autor']);
+                          $rezultat -> bindParam(':tekst', $_POST['vijest']);
+                          
+                          $rezultat->execute(); 
+                          if (!$rezultat) {
+                            $greska = $veza->errorInfo();
+                            print "SQL greška kod unosa novosti: ".$greska[2];
+                            exit();
+                            } 
+                            $veza = NULL;
+  }
 
-$primjer = "";
-$brojac=0;
-$noveVijesti = array();
-/*ucitavanje vijesti*/
-foreach(glob("vijesti/*.txt") as $nazivVijesti)
-{
-    $noveVijesti[$brojac] = file($nazivVijesti);
-    $brojac++;
-}
+if(isset($_REQUEST['obrisi']) && isset($_SESSION['korisnickoIme'])){
+                        $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                        $veza->exec("set names utf8");
+                        $rez = $veza->query("delete from vijest where id=".$_REQUEST['obrisi']);                            
+                         if (!$rez) {
+                                 $greska = $veza->errorInfo();
+                                 print "SQL greška: ". $greska[2];
+                                 exit();
+                 }    
+}   
+  
 
-$brojVijesti=count($noveVijesti);
-
-
-for ($i = 0; $i < $brojVijesti; $i++)
-{
-    for ($j = 0; $j < $brojVijesti - 1 - $i; $j++) {
-        $time1 = strtotime($noveVijesti[$j][0]); $newformat1 = date('d-m-Y h:i:s',$time1);
-        $time2 = strtotime($noveVijesti[$j+1][0]); $newformat2 = date('d-m-Y h:i:s',$time2);
-        if ($time2 < $time1) {
-            $tmp=$noveVijesti[$j];
-            $noveVijesti[$j]=$noveVijesti[$j+1];
-            $noveVijesti[$j+1]=$tmp;
-        }
-    }
-}
-
-for ($i=0; $i<$brojVijesti; $i++)
-{
-    $vijestDuzina=count($noveVijesti[$i]);
-    $sadrzajnoveVijesti=$detaljnijenoveVijesti="";
-    $j=4;
-    while ($j<$vijestDuzina){
-        if (trim($noveVijesti[$i][$j])=="--"){
-            for ($k=$j+1; $k<$vijestDuzina; $k++){
-                $detaljnijenoveVijesti.=$noveVijesti[$i][$k];
-            }
-            break;
-        }
-        $sadrzajnoveVijesti.=$noveVijesti[$i][$j];
-        $j++;
-    }
-    $datum=$noveVijesti[$i][0]; $autor=$noveVijesti[$i][1]; $naslov=$noveVijesti[$i][2]; 
-
-    if (empty($detaljnijenoveVijesti))
-    {
-        $vidljivost = 'display: none';
-    }
-    else
-    {
-        $vidljivost = 'display: block';
-    }
-   $primjer .= "
-        <form method='get' action='vijesti.php'>
-            <div class='topcontent'>
-                <input type='hidden' name='autor' value='$autor'>
-                <input type='hidden' name='naslov' value='$naslov'>
-                <input type='hidden' name='sadržaj' value= '$sadrzajnoveVijesti'>
-                <input type='hidden' name='datum' value='$datum'>
-                <input type='hidden' name='detaljno' value='$detaljnijenoveVijesti'>
-                <h3 class='naslov'>$naslov</h3>
-                <p>$sadrzajnoveVijesti</p>
-                <br>
-                <p class='post-info'><span> $autor,  $datum  </span> 
-                <input style='$vidljivost' class = 'post-info' type='submit' id='submitButton4' value='Detaljnije>>'>
-            </div>
-        </form>";
-}
-
-echo <<<_HTML_
+ ?>
 <!doctype html>
 <html>
 	<head>
@@ -86,7 +118,9 @@ echo <<<_HTML_
 	
 		<div class = "logo">
 					<a href="index.php"><img src="emona.jpg" alt = "Logo"></a>	
-					<p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
+                    <p>Agencija za vještačenje, procjenu pokretne imovine i pomćne poslove u osiguranju</p>
+                    
+                 
 		</div>
 		
 			
@@ -119,10 +153,122 @@ echo <<<_HTML_
 				<div class = "right_holder"><img alt ="desno" onClick = "functionCover(1)" src="desno.png"></img></div>
 			</div>
 			<div class = "content">
-					$primjer
+					<?php
+                        session_start();
+                         $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                         $veza->exec("set names utf8");
+                         $rezultat = $veza->query("select id, naslov, tekst, UNIX_TIMESTAMP(vrijeme) vrijemeNeko, autor from vijest order by vrijeme desc");
+                         if (!$rezultat) {
+                              $greska = $veza->errorInfo();
+                              print "SQL greška: " . $greska[2];
+                              exit();
+                         }
+                         if(isset($_POST['izmijeni']) && isset($_SESSION['korisnickoIme'])){
+                               
+                               $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
+                                $veza->exec("set names utf8");
+                                $izmjena = $veza->query("select * from vijest where id=".$id);                            
+                                if (!$izmjena) {
+                                         $greska = $veza->errorInfo();
+                                         print "SQL greška: ". $greska[2];
+                                         exit();
+                                }    
+                              
+                             
+                                        
+                         } 
+                         if(isset($_SESSION['korisnickoIme'])) {
+
+                         print "<div class='topcontent'>";
+                         print "<h2>Prijavljeni ste kao: ".$_SESSION['korisnickoIme']."</h2>";
+                         
+                         print "<h>Ukoliko želite da dodate novi kontakt ili da obrišete stari, kliknite na link: <h2><a href=kontakti.php>Kontakti</a></h2></h>";
+                         print "</div>";
+                         print "<div class='topcontent'>";
+                         print "<h3>Unesite novu vijest:</h3>";
+                         print "<form method = 'post' action = 'index.php' class = 'formVijesti'>";
+                         print "<table class ='tabela'>";
+                         print "<tr>";
+                         print "<td><lable class = 'labela'>Autor vijesti: </label></td>";
+                         print "<td><input type = 'text' name = 'autor' ></input></td>";
+                         print "</tr>";
+                         print "<tr>";
+                         print "<td><lable class = 'labela'>Naslov vijesti: </label></td>";
+                         print "<td><input type = 'text' name = 'naslov' ></input></td>";
+                         print "</tr>";
+                         print "<tr>";
+                         print "<td><lable class = 'labela'>Tekst vijesti: </label></td>";
+                         print "<td><textarea name = 'vijest' id = 'porukaVijest' ></textarea></td>";
+                         print "</tr>";
+                         print "<tr>";
+                         print "<td></td>";
+                         print "<td><input type = 'submit' id = 'dodaj' name = 'dodaj' value = 'Dodaj novu vijest'></input></   td>";
+                        
+                         print "</tr>";
+                         print "</table>";
+                         print "</form>";
+                         print "</div>";
+                        
+                         }
+                                
+                         
+                         foreach ($rezultat as $vijest) {
+
+                              
+                              print "<div class='topcontent'>";
+                              print "<h3 class='naslov'>".$vijest['naslov']."</h3>";
+		                      print "<p>".$vijest['tekst']."</p>";     
+      
+                             $rezultat1 = $veza->query("select count(*) broj from komentar where vijest=".$vijest['id']);
+                             $komentar = $rezultat1->fetch(PDO::FETCH_ASSOC);
+                             $id = $vijest['id'];
+		                     if ($komentar['broj'] > 0){
+                                
+                                 print "<a href=komentari.php?vijest=".$vijest['id'].">".$komentar['broj']." komentara </a>";
+                                
+                             } 
+		                      else{
+                                     
+                                     print "<p>Nema komentara</p>";
+			                         print "<a class='info' href=komentari.php?vijest=".$vijest['id'].">Dodaj komentar</a>";
+                                    
+
+                            }
+                             if(isset($_SESSION['korisnickoIme'])) {
+                                 print "<br>";
+                                 print "<a class='info' href= index.php?obrisi=".$vijest['id'].">Obriši vijest</a>";
+                                 print "<br>";
+                                 print "<a class='info' href= index.php?izmijeni=".$vijest['id'].">Izmijeni vijest</a>";
+                                 
+
+                             }
+                             print "<p class='post-info'>".$vijest['autor'].", ". date("d.m.Y. (h:i)", $vijest['vrijemeNeko'])."</p";
+		                     print "<br>";  
+                             print "</div>";
+                             }
+                        
+                         $veza = NULL;
+         
+                    ?>
 			</div>
 			</div>
-			
+			<aside class = "bottom-sidebar">
+                 <?php
+                    
+                    print "<form method = 'post' action = 'index.php'>";
+                    print "<input type='tekst' class ='korisnickoIme' name ='korisnickoIme' placeholder='Korisničko ime'></input>";
+                    print "<input type='tekst' class ='sifra' name ='sifra' placeholder='Šifra'</input>";
+                    
+                    print "<input type='submit' class ='prijava' name ='prijava' value ='Prijavi se'></input>";
+                    
+                    print "<input type='submit' class ='odjava' name ='odjava' value ='Odjavi se'></input>";
+                    print "<input type='submit' class ='promjenaSifra' name ='promjenaSifra' value ='Zaboravili ste sifru'></input>";
+                    print "</form>";
+                   
+                  
+                         $veza = NULL;
+                    ?>
+			</aside>
 			<aside class = "bottom-sidebar">
 				<article>
 					<p>Kontakt informacije</p>
@@ -191,6 +337,4 @@ echo <<<_HTML_
             </div>
 	</body>
 </html>
-_HTML_;
-?>
 

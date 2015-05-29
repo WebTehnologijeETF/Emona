@@ -1,4 +1,4 @@
-﻿     <div id="sredina">
+     <div id="sredina">
 		    <div class = "background">	
 			    <div class = "maincontent">
 				<div class = "content">

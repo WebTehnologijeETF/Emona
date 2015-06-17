@@ -97,20 +97,20 @@
 	
 }
 .left_holder{
-	height: 410px;
-	width: 5%;
+	height: 430px;
+	width: 10%;
 	position: absolute;
 	left: 0%;
-	top: 2.8%;
+	top: 4.2%;
 	float: left;
 	
 }
 .right_holder{
-	height: 410px;
-	width: 5%;
+	height: 430px;
+	width: 10%;
 	position: absolute;
 	right: 30%;
-	top: 2.8%;
+	top: 4.2%;
 	
 }
 .left_holder img{

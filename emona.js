@@ -1,6 +1,6 @@
 ﻿var brojac = 1;
 var ukupno = 6;
-function functionCover(x){
+/*function functionCover(x){
 	var Image = document.getElementById('cover');
 	brojac = brojac + x;
 	if(brojac > ukupno) brojac = 1;
@@ -15,7 +15,7 @@ window.setInterval(function functionCoverA(){
 	if(brojac < 1) brojac = ukupno;
 	Image.src = "cover" + brojac + ".jpg";
 	
-},3000);
+},3000);*/
 
 function kliknuto(godina, link) {
 	var id = "emona"+godina

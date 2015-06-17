@@ -189,5 +189,7 @@
 				</article>
 			</aside>
 			
-		
+		<footer class = "mainfooter">
+			<p>Copyright &copy; Dzenana Bricic 2015</p>
+		 </footer>
 		</div>	

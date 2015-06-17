@@ -1,4 +1,10 @@
 <?php  session_start();
+  
+if(isset($_POST['odjava'])) {
+                        session_unset();
+                        session_destroy();
+                        session_unregister();
+                    }
    if(isset($_REQUEST['prijava'])){
                          
                          $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
@@ -32,11 +38,6 @@
                             
                         }    
                         }
-if(isset($_POST['odjava'])) {
-                        session_unset();
-                        session_destroy();
-                        session_unregister();
-                    }
 if(isset($_POST['promjenaSifra'])) {
                         $veza = new PDO("mysql:dbname=emona;host=localhost;charset=utf8", "dzenana", "dzenana06");
                          $veza->exec("set names utf8");
